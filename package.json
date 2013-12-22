@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/xtatanx/myTodo/issues"
   },
-  "homepage": "https://github.com/xtatanx/myTodo"
+  "homepage": "https://github.com/xtatanx/myTodo",
+  "devDependencies": {
+    "grunt": "~0.4.2"
+  }
 }
