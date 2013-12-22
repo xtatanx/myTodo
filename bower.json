@@ -1,0 +1,21 @@
+{
+  "name": "myTodo-bower",
+  "version": "0.0.1",
+  "homepage": "https://github.com/xtatanx/myTodo",
+  "authors": [
+    "Jhonnatan Gonzalez"
+  ],
+  "description": "Bower dependencies",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.1.0",
+    "jquery": "~2.0.3"
+  }
+}
