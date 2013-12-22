@@ -1,4 +1,4 @@
-  {
+{
   "name": "myTodo-app",
   "version": "0.0.1",
   "description": "personal task manager using local storage ",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/xtatanx/myTodo",
   "devDependencies": {
-    "grunt": "~0.4.2"
+    "grunt": "~0.4.2",
+    "grunt-contrib-stylus": "~0.11.0"
   }
 }
