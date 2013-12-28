@@ -16,11 +16,20 @@
         <header>
             <h1 class="logo">myTodo</h1>
         </header>
+        <section class="atask-wrapper">
+            <input class="the-task" type="text" placeholder="Code some app...">
+            <button class="btn add-task">Add task</button>
+        </section>
         <section>
-            
+            <ul>
+                <li><span class="checkbox"></span>Code some app</li>
+                <li><span class="checkbox"></span>find a job</li>
+                <li><span class="checkbox"></span>hangout with some friends</li>
+            </ul>
         </section>
         <script src="bower_components/underscore/underscore-min.js"></script>
         <script src="bower_components/backbone/backbone-min.js"></script>
+        <script src="bower_components/backbone.localstorage/backbone.localStorage.js"></script>
         <script src="bower_components/jquery/jquery.min.js"></script>
         <script src="js/main.js"></script>
     </body>

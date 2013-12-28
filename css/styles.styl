@@ -64,6 +64,26 @@ header
 	background darkColor
 	padding .5rem 1rem
 	box-shadow 0 3px 1px rgba(0,0,0,.2)
+.add-task, .the-task
+	display inline-block
+	vertical-align middle
+
+.add-task
+	background linear-gradient(to bottom, #45B239 0%,#47ba3b 100%)
+	&:hover
+		background linear-gradient(to bottom, #47ba3b 50%,#3da033 100%)
+
+.atask-wrapper
+	margin 2rem 0 0 0
+	text-align center
+	width 100%
+
+.btn
+	border none
+	padding .5rem 1rem
+	border-radius 4px
+	color #fff
+	text-shadow 1px 1px 0 rgba(0,0,0,0.2)		
 
 .logo
 	color logoColor		
@@ -71,6 +91,18 @@ header
 	font-family titleFont
 	font-size 1.3rem
 	text-shadow 1px 1px 0px rgba(0,0,0,.3)
+
+.the-task
+	background lighten(bgColor, 50%)
+	border-radius 4px
+	padding .25rem
+	width 56.25% /* 180 / 320 */
+	margin-right 16px
+	max-width 500px
+	font-size 1.1rem
+	font-family mainFont
+	color darken(lightGrey, 30%)
+	border 1px solid lightGrey
 
 
 // HELPER CLASES 
