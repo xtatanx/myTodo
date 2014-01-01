@@ -1,5 +1,6 @@
 @font-face{font-family:'source_sans_probold';src:url("../fonts/sourcesanspro-bold-webfont.eot");src:url("../fonts/sourcesanspro-bold-webfont.eot?#iefix") format('embedded-opentype'),url("../fonts/sourcesanspro-bold-webfont.woff") format('woff'),url("../fonts/sourcesanspro-bold-webfont.ttf") format('truetype'),url("../fonts/sourcesanspro-bold-webfont.svg#source_sans_probold") format('svg');font-weight:normal;font-style:normal}
 @font-face{font-family:'droid_sansregular';src:url("../fonts/DroidSans-webfont.eot");src:url("../fonts/DroidSans-webfont.eot?#iefix") format('embedded-opentype'),url("../fonts/DroidSans-webfont.woff") format('woff'),url("../fonts/DroidSans-webfont.ttf") format('truetype'),url("../fonts/DroidSans-webfont.svg#droid_sansregular") format('svg');font-weight:normal;font-style:normal}
+@font-face{font-family:'checkbox';src:url("../fonts/checkbox.eot");src:url("../fonts/checkbox.eot?#iefix") format('embedded-opentype'),url("../fonts/checkbox.woff") format('woff'),url("../fonts/checkbox.ttf") format('truetype'),url("../fonts/checkbox.svg#checkbox") format('svg');font-weight:normal;font-style:normal}
 @media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}
 }@page{margin:.5cm}
 {**:after;}
@@ -12,6 +13,7 @@ img{vertical-align:middle}
 fieldset{border:0;margin:0;padding:0}
 textarea{resize:vertical}
 .chromeframe{margin:.2em 0;background:#ccc;color:#000;padding:.2em 0}
+[class^="icon-"],[class*=" icon-"]{font-family:'checkbox';speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 *
 *:before{-moz-box-sizing:border-box;box-sizing:border-box}
 body{background:#f6f6f6;color:#5e5e5e;font-family:'droid_sansregular';font-size:16px;text-rendering:geometricPrecision;webkit-text-stroke:.6px}
@@ -21,7 +23,14 @@ header{background:#255676;padding:.5rem 1rem;box-shadow:0 3px 1px rgba(0,0,0,0.2
 .add-task:hover{background:linear-gradient(to bottom,#47ba3b 50%,#3da033 100%)}
 .atask-wrapper{margin:2rem 0 0 0;text-align:center;width:100%}
 .btn{border:none;padding:.5rem 1rem;border-radius:4px;color:#fff;text-shadow:1px 1px 0 rgba(0,0,0,0.2)}
+.checkbox{cursor:pointer;margin-right:8px}
+.icon-checkbox-checked:before{content:"\e600"}
+.icon-checkbox-unchecked:before{content:"\e601"}
 .logo{color:#f9f9f9;margin:0;font-family:'source_sans_probold';font-size:1.3rem;text-shadow:1px 1px 0 rgba(0,0,0,0.3)}
+.todos{text-align:center}
+.todos-list{display:inline-block;margin:1rem 0;padding:0;text-align:left;}
+.todos-list li{list-style:none;}
+.todos-list li + li{margin-top:10px}
 .the-task{background:#fbfbfb;border-radius:4px;padding:.25rem;width:56.25%;margin-right:16px;max-width:500px;font-size:1.1rem;font-family:'droid_sansregular';color:#777;border:1px solid #aaa}
 .ir{background-color:transparent;border:0;overflow:hidden;*text-indent:-9999px}
 .ir:before{content:"";display:#000;width:0;height:150%}

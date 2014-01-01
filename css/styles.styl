@@ -47,6 +47,19 @@ textarea
 
 
 // AUTOR STYLES
+[class^="icon-"], [class*=" icon-"]
+	font-family 'checkbox'
+	speak none
+	font-style normal
+	font-weight normal
+	font-variant normal
+	text-transform none
+	line-height: 1
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing antialiased
+	-moz-osx-font-smoothing grayscale
+
 *
 *:after
 *:before
@@ -83,7 +96,17 @@ header
 	padding .5rem 1rem
 	border-radius 4px
 	color #fff
-	text-shadow 1px 1px 0 rgba(0,0,0,0.2)		
+	text-shadow 1px 1px 0 rgba(0,0,0,0.2)
+
+.checkbox
+	cursor pointer
+	margin-right 8px	
+
+.icon-checkbox-checked:before
+	content: "\e600"
+
+.icon-checkbox-unchecked:before
+	content: "\e601"			
 
 .logo
 	color logoColor		
@@ -91,6 +114,20 @@ header
 	font-family titleFont
 	font-size 1.3rem
 	text-shadow 1px 1px 0px rgba(0,0,0,.3)
+
+.todos
+	text-align center	
+
+.todos-list
+	display inline-block
+	margin 1rem 0
+	padding 0
+	text-align left
+
+	li
+		list-style none
+		& + li
+			margin-top 10px		
 
 .the-task
 	background lighten(bgColor, 50%)
