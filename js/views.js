@@ -16,19 +16,13 @@ var TaskView = Backbone.View.extend({
 	},
 
 	events: {
-		'click .checkbox': 'toggleState'
+		'click .icon-checkbox': 'toggleState'
 	},
 
 	toggleState: function(e){
 		var $checkbox = $(e.target);
 
-		if($checkbox.hasClass("icon-checkbox-unchecked")){
-			$checkbox.removeClass("icon-checkbox-unchecked");
-			$checkbox.addClass("icon-checkbox-checked");
-		}else{
-			$checkbox.addClass("icon-checkbox-unchecked");
-			$checkbox.removeClass("icon-checkbox-checked");
-		}
+		$checkbox.toggleClass('icon-checkbox-unchecked');
 
 	}
 });

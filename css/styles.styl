@@ -46,7 +46,6 @@ textarea
 	padding: 0.2em 0
 
 
-// AUTOR STYLES
 [class^="icon-"], [class*=" icon-"]
 	font-family 'checkbox'
 	speak none
@@ -55,8 +54,6 @@ textarea
 	font-variant normal
 	text-transform none
 	line-height: 1
-
-	/* Better Font Rendering =========== */
 	-webkit-font-smoothing antialiased
 	-moz-osx-font-smoothing grayscale
 
@@ -77,6 +74,7 @@ header
 	background darkColor
 	padding .5rem 1rem
 	box-shadow 0 3px 1px rgba(0,0,0,.2)
+
 .add-task, .the-task
 	display inline-block
 	vertical-align middle
@@ -98,13 +96,13 @@ header
 	color #fff
 	text-shadow 1px 1px 0 rgba(0,0,0,0.2)
 
-.checkbox
+.icon-checkbox
 	cursor pointer
-	margin-right 8px	
+	margin-right 8px
+	&:before
+		content: "\e600"
+		color #25B01E	
 
-.icon-checkbox-checked:before
-	content: "\e600"
-	color #25B01E
 
 .icon-checkbox-unchecked:before
 	content: "\e601"
