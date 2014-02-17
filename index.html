@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>myTodo App</title>
+        <title>Hello</title>
         <meta name="description" content="todo app for personal use tracking my progress using local storage">
         <meta name="viewport" content="width=device-width">
 
@@ -16,23 +16,28 @@
         <header>
             <h1 class="logo">myTodo</h1>
         </header>
-        <section class="atask-wrapper">
+        <section id="todos" class="atask-wrapper">
             <input class="the-task" type="text" placeholder="Code some app...">
-            <button class="btn add-task">Add task</button>
+            <button id="add" class="btn add-task">Add task</button>
         </section>
         <section class="todos">
-            <ul class="todos-list">
-                <li><span class="checkbox icon-checkbox-checked"></span>Code some app today</li>
-                <li><span class="checkbox icon-checkbox-unchecked"></span>find a job</li>
-                <li><span class="checkbox icon-checkbox-unchecked"></span>hangout with some friends</li>
+            <ul id="tasks" class="todos-list">
             </ul>
         </section>
+
+        <!-- Templates -->
+        <script type="text/template" id="task">
+            <span class="checkbox icon-checkbox-unchecked"></span> <%- title %>
+        </script>
+        <!-- End of templates  -->
         <script src="bower_components/jquery/jquery.min.js"></script>
         <script src="bower_components/underscore/underscore-min.js"></script>
         <script src="bower_components/backbone/backbone-min.js"></script>
         <script src="bower_components/backbone.localstorage/backbone.localStorage.js"></script>
         <script src="js/models.js"></script>
-         <script src="js/collections.js"></script>
+        <script src="js/collections.js"></script>
+        <script src="js/views.js"></script>
         <script src="js/main.js"></script>
+
     </body>
 </html>

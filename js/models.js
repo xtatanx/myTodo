@@ -1,8 +1,8 @@
-Todo = Backbone.Model.extend({
+var Task = Backbone.Model.extend({
 	defaults:{
-		'title': 'An empty todo',
-		'done': false
+		title: "An empyt task..",
+		done: false
 	}
 });
 
-todo = new Todo();
+var task = new Task;

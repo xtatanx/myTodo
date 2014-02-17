@@ -24,8 +24,8 @@ header{background:#255676;padding:.5rem 1rem;box-shadow:0 3px 1px rgba(0,0,0,0.2
 .atask-wrapper{margin:2rem 0 0 0;text-align:center;width:100%}
 .btn{border:none;padding:.5rem 1rem;border-radius:4px;color:#fff;text-shadow:1px 1px 0 rgba(0,0,0,0.2)}
 .checkbox{cursor:pointer;margin-right:8px}
-.icon-checkbox-checked:before{content:"\e600"}
-.icon-checkbox-unchecked:before{content:"\e601"}
+.icon-checkbox-checked:before{content:"\e600";color:#25b01e}
+.icon-checkbox-unchecked:before{content:"\e601";color:#db2323}
 .logo{color:#f9f9f9;margin:0;font-family:'source_sans_probold';font-size:1.3rem;text-shadow:1px 1px 0 rgba(0,0,0,0.3)}
 .todos{text-align:center}
 .todos-list{display:inline-block;margin:1rem 0;padding:0;text-align:left;}
