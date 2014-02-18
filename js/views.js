@@ -23,7 +23,6 @@ var TaskView = Backbone.View.extend({
 		var $checkbox = $(e.target);
 		this.model.set('done', !this.model.get('done'));
 
-
 	}
 });
 
