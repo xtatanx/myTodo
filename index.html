@@ -26,8 +26,8 @@
         </section>
         <!-- Templates -->
         <script type="text/template" id="task">
-            <div class="task-wrapper">
-                <span class="icon-checkbox  <% if(done === false){%> icon-checkbox-unchecked <% } %>" ></span>
+            <div class="task-wrapper <% if(!done){ %> not-done <% } %>">
+                <span class="icon-checkbox " ></span>
                 <span class="task_title"><%- title %></span>
                 <span class="editBox"><input class="edit" type="text"></span> 
             </div>

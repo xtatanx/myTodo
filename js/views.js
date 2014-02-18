@@ -32,6 +32,8 @@ var TaskView = Backbone.View.extend({
 		this.editBox = this.task.next();
 		this.editInput = this.editBox.find('.edit');
 
+		$(".task_title").removeClass("display__none");
+		$(".editBox").removeClass("edit_box__editing");
 		this.task.addClass("display__none")
 		this.editBox.addClass("edit_box__editing");
 		this.editInput.attr('placeholder', this.task.text()).focus();
@@ -81,7 +83,8 @@ var AddTask = Backbone.View.extend({
 	el: '#todos',
 
 	events:{
-		'click #add': 'addTask'
+		'click #add': 'addTask',
+		'keypress #inputTask': 'updateOnEnter'
 	},
 
 	addTask: function(){
@@ -99,6 +102,12 @@ var AddTask = Backbone.View.extend({
 
 	displayMessage: function(msg){
 		$('#inputTask').focus().attr("placeholder", msg);
+	},
+
+	updateOnEnter: function(e){
+		if(e.keyCode === 13){
+			this.addTask();
+		}
 	}
 });
 

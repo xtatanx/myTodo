@@ -96,14 +96,22 @@ header
 	color #fff
 	text-shadow 1px 1px 0 rgba(0,0,0,0.2)
 
-.display__none
-	display none
-
 .edit
 	display none
 
+.display__none
+	display none
+
 .edit_box__editing .edit
-	display:inline-block			
+	display:inline-block
+
+.not-done	
+	.icon-checkbox:before
+		content: "\e601"
+		color #DB2323
+
+	.task_title
+		text-decoration none							
 
 .icon-checkbox
 	cursor pointer
@@ -111,11 +119,7 @@ header
 	&:before
 		content: "\e600"
 		color #25B01E	
-
-
-.icon-checkbox-unchecked:before
-	content: "\e601"
-	color #DB2323			
+			
 
 .logo
 	color logoColor		
@@ -123,6 +127,8 @@ header
 	font-family titleFont
 	font-size 1.3rem
 	text-shadow 1px 1px 0px rgba(0,0,0,.3)
+
+	
 
 .todos
 	text-align center	
@@ -136,7 +142,10 @@ header
 	li
 		list-style none
 		& + li
-			margin-top 10px		
+			margin-top 10px
+
+.task_title
+	text-decoration line-through					
 
 .the-task
 	background lighten(bgColor, 50%)
