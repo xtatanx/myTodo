@@ -31,7 +31,7 @@ var TasksView = Backbone.View.extend({
 	el: '#tasks',
 
 	initialize: function(){
-		this.render();
+		this.collection.on('add', this.addOne, this);
 	},
 
 	render: function(){
@@ -47,5 +47,23 @@ var TasksView = Backbone.View.extend({
 	}
 });
 
+var AddTask = Backbone.View.extend({
+	el: '#todos',
 
-var tasksView = new TasksView({ collection: tasks });
+	events:{
+		'click #add': 'addTask'
+	},
+
+	addTask: function(){
+		var taskTitle = $('#inputTask').val();
+		$('#inputTask').val("");
+		var task = new Task( {title: taskTitle} ); // create the task model
+		this.collection.add(task); //add the model to the collection
+
+		
+	}
+});
+
+
+var tasksView = new TasksView( {collection: tasks} );
+var addTask = new AddTask( {collection: tasks} ); 
