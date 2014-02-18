@@ -24,10 +24,13 @@
             <ul id="tasks" class="todos-list">
             </ul>
         </section>
-
         <!-- Templates -->
         <script type="text/template" id="task">
-            <span class="icon-checkbox  <% if(done === false){%> icon-checkbox-unchecked <% } %>" ></span> <%- title %>
+            <div class="task-wrapper">
+                <span class="icon-checkbox  <% if(done === false){%> icon-checkbox-unchecked <% } %>" ></span>
+                <span class="task_title"><%- title %></span>
+                <span class="editBox"><input class="edit" type="text"></span> 
+            </div>
         </script>
         <!-- End of templates  -->
         <script src="bower_components/jquery/jquery.min.js"></script>

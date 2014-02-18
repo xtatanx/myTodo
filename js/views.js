@@ -16,13 +16,43 @@ var TaskView = Backbone.View.extend({
 	},
 
 	events: {
-		'click .icon-checkbox': 'toggleState'
+		'click .icon-checkbox': 'toggleState',
+		'click .task_title': 'editTask',
+		'keypress .edit': 'updateOnEnter'
 	},
 
 	toggleState: function(e){
 		var $checkbox = $(e.target);
 		this.model.set('done', !this.model.get('done'));
 
+	},
+
+	editTask: function(e){
+		this.task = $(e.target);
+		this.editBox = this.task.next();
+		this.editInput = this.editBox.find('.edit');
+
+		this.task.addClass("display__none")
+		this.editBox.addClass("edit_box__editing");
+		this.editInput.attr('placeholder', this.task.text()).focus();
+	},
+
+	updateOnEnter: function(e){
+		if(e.keyCode === 13){
+			this.close();
+		}
+	},
+
+	close: function(){
+		var value = this.editInput.val();
+		if(!value){
+			this.task.removeClass("display__none")
+			this.editBox.removeClass("edit_box__editing");
+		}else{
+			this.model.set({title: value});
+			this.task.removeClass("display__none")
+			this.editBox.removeClass("edit_box__editing");
+		}
 	}
 });
 
@@ -56,7 +86,7 @@ var AddTask = Backbone.View.extend({
 
 	addTask: function(){
 
-		var taskTitle = $('#inputTask').val();
+		var taskTitle = $('#inputTask'). val();
 		$('#inputTask').val(""); //clear the input
 
 		if($.trim(taskTitle) === ''){//check if the input has some text in it
@@ -68,7 +98,7 @@ var AddTask = Backbone.View.extend({
 	},
 
 	displayMessage: function(msg){
-		$('#inputTask').attr("placeholder", msg);
+		$('#inputTask').focus().attr("placeholder", msg);
 	}
 });
 
