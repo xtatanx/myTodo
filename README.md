@@ -7,10 +7,12 @@ Personal todo app using backbone, grunt, bower and local storage to track my per
 
 - Install bower
 
+- Install grunt-cli
+
 - Clone the repo from https://github.com/xtatanx/myTodo
 
-- run npm install
+- Run npm install
 
-- run bower install bower.json
+- Run bower install bower.json
 
-- thats all for now
+- Thats all for now
