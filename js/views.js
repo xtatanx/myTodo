@@ -21,8 +21,8 @@ var TaskView = Backbone.View.extend({
 
 	toggleState: function(e){
 		var $checkbox = $(e.target);
+		this.model.set('done', !this.model.get('done'));
 
-		$checkbox.toggleClass('icon-checkbox-unchecked');
 
 	}
 });
@@ -60,7 +60,7 @@ var AddTask = Backbone.View.extend({
 		var taskTitle = $('#inputTask').val();
 		$('#inputTask').val(""); //clear the input
 
-		if($.trim(taskTitle) === ''){
+		if($.trim(taskTitle) === ''){//check if the input has some text in it
 			this.displayMessage("Todo's can not be empty");
 		}else{
 			var task = new Task( {title: taskTitle} ); // create the task model
