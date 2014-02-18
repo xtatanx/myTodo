@@ -31,6 +31,7 @@ var TasksView = Backbone.View.extend({
 	el: '#tasks',
 
 	initialize: function(){
+		this.render();
 		this.collection.on('add', this.addOne, this);
 	},
 
@@ -55,12 +56,20 @@ var AddTask = Backbone.View.extend({
 	},
 
 	addTask: function(){
-		var taskTitle = $('#inputTask').val();
-		$('#inputTask').val("");
-		var task = new Task( {title: taskTitle} ); // create the task model
-		this.collection.add(task); //add the model to the collection
 
-		
+		var taskTitle = $('#inputTask').val();
+		$('#inputTask').val(""); //clear the input
+
+		if($.trim(taskTitle) === ''){
+			this.displayMessage("Todo's can not be empty");
+		}else{
+			var task = new Task( {title: taskTitle} ); // create the task model
+			this.collection.add(task); //add the model to the collection			
+		}
+	},
+
+	displayMessage: function(msg){
+		$('#inputTask').attr("placeholder", msg);
 	}
 });
 
