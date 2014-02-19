@@ -27,13 +27,13 @@ module.exports = function(grunt) {
 				tasks:['preproccess']
 			},
 
-			livereload:{
+			livereload: {
 				options:{
-					livereload: 1337
+					livereload: true
 				},
 
-				files:["**/*.html","css/*.css","js/*.js"]
-			}			
+				files:['*.html', 'css/*.css', 'js/*.js']
+			}		
 		}		
 	});
 
