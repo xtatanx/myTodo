@@ -27,7 +27,7 @@ header{background:#255676;padding:.5rem 1rem;box-shadow:0 3px 1px rgba(0,0,0,0.2
 .display__none{display:none}
 .edit_box__editing .edit{display:inline-block}
 .not-done .icon-checkbox:before{content:"\e601";color:#db2323}
-.not-done .task_title{text-decoration:none}
+.not-done .task_title{text-decoration:none;color:#5e5e5e}
 .icon-checkbox{cursor:pointer;margin-right:8px;}
 .icon-checkbox:before{content:"\e600";color:#25b01e}
 .logo{color:#f9f9f9;margin:0;font-family:'source_sans_probold';font-size:1.3rem;text-shadow:1px 1px 0 rgba(0,0,0,0.3)}
@@ -35,7 +35,7 @@ header{background:#255676;padding:.5rem 1rem;box-shadow:0 3px 1px rgba(0,0,0,0.2
 .todos-list{display:inline-block;margin:1rem 0;padding:0;text-align:left;}
 .todos-list li{list-style:none;}
 .todos-list li + li{margin-top:10px}
-.task_title{text-decoration:line-through}
+.task_title{text-decoration:line-through;color:#dbdbdb}
 .the-task{background:#fbfbfb;border-radius:4px;padding:.25rem;width:56.25%;margin-right:16px;max-width:500px;font-size:1.1rem;font-family:'droid_sansregular';color:#777;border:1px solid #aaa}
 .ir{background-color:transparent;border:0;overflow:hidden;*text-indent:-9999px}
 .ir:before{content:"";display:#000;width:0;height:150%}
