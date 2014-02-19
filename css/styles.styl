@@ -90,12 +90,32 @@ header
 	text-align center
 	width 100%
 
+
 .btn
 	border none
 	padding .5rem 1rem
 	border-radius 4px
 	color #fff
 	text-shadow 1px 1px 0 rgba(0,0,0,0.2)
+
+.close_btn
+	color #b53e3e
+	font-weight 900
+	background lightGrey
+	height 15px
+	width 15px
+	border-radius 100%
+	text-align center
+	line-height 12px
+	cursor pointer
+	transition opacity .2s ease
+	display inline-block
+	vertical-align middle
+	opacity 0
+	margin-top -2px
+	&:hover
+		background lighten(lightGrey, 20%)
+		color lighten(#b53e3e, 20%)
 
 .edit
 	display none
@@ -150,7 +170,18 @@ header
 
 .task_title
 	text-decoration line-through
-	color #dbdbdb					
+	color #dbdbdb
+
+.task-wrapper
+	padding 4px
+	border-radius 4px
+	position relative
+	display inline-block
+	&:hover 
+		background rgba(lightGrey, .2)
+		.close_btn
+			opacity 1	
+						
 
 .the-task
 	background lighten(bgColor, 50%)
