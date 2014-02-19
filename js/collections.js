@@ -1,19 +1,8 @@
 var Tasks = Backbone.Collection.extend({
-	model: Task
+	model: Task,
+
+	localStorage: new Backbone.LocalStorage("todos-collection")
 });
 
 
-var tasks = new Tasks([
-	{
-		title: 'my task'
-	},
-	{
-		title: 'my task 1'
-	},
-	{
-		title: 'my task 2'
-	},
-	{
-		title: 'my task 3'
-	}
-]);
+var tasks = new Tasks();

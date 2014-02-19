@@ -23,7 +23,7 @@ var TaskView = Backbone.View.extend({
 
 	toggleState: function(e){
 		var $checkbox = $(e.target);
-		this.model.set('done', !this.model.get('done'));
+		this.model.save('done', !this.model.get('done'));
 
 	},
 
@@ -51,7 +51,7 @@ var TaskView = Backbone.View.extend({
 			this.task.removeClass("display__none")
 			this.editBox.removeClass("edit_box__editing");
 		}else{
-			this.model.set({title: value});
+			this.model.save({title: value});
 			this.task.removeClass("display__none")
 			this.editBox.removeClass("edit_box__editing");
 		}
@@ -82,6 +82,10 @@ var TasksView = Backbone.View.extend({
 var AddTask = Backbone.View.extend({
 	el: '#todos',
 
+	initialize: function(){
+		this.collection.fetch();
+	},
+
 	events:{
 		'click #add': 'addTask',
 		'keypress #inputTask': 'updateOnEnter'
@@ -96,7 +100,7 @@ var AddTask = Backbone.View.extend({
 			this.displayMessage("Todo's can not be empty");
 		}else{
 			var task = new Task( {title: taskTitle} ); // create the task model
-			this.collection.add(task); //add the model to the collection			
+			this.collection.create(task); //add the model to the collection			
 		}
 	},
 
