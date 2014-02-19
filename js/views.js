@@ -4,7 +4,8 @@ var TaskView = Backbone.View.extend({
 	template: _.template( $('#task').html() ),
 
 	initialize: function(){
-		this.model.on("change", this.render, this);
+		this.model.on('change', this.render, this);
+		this.model.on('destroy', this.remove, this);
 	},
 
 	render: function(){
@@ -18,7 +19,8 @@ var TaskView = Backbone.View.extend({
 	events: {
 		'click .icon-checkbox': 'toggleState',
 		'click .task_title': 'editTask',
-		'keypress .edit': 'updateOnEnter'
+		'keypress .edit': 'updateOnEnter',
+		'click  .close_btn': 'clear'
 	},
 
 	toggleState: function(e){
@@ -55,6 +57,10 @@ var TaskView = Backbone.View.extend({
 			this.task.removeClass("display__none")
 			this.editBox.removeClass("edit_box__editing");
 		}
+	},
+
+	clear:function(){
+		this.model.destroy();
 	}
 });
 
