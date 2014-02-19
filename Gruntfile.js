@@ -3,6 +3,7 @@ module.exports = function(grunt) {
 	// PLUGINS LOADED
 	grunt.loadNpmTasks('grunt-contrib-stylus');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-autoprefixer');
 
 	// PROJECT CONFIGURATION
 	grunt.initConfig({
@@ -13,22 +14,31 @@ module.exports = function(grunt) {
 				}				
 			}
 		},
+
+		autoprefixer:{
+			main_file:{
+				src: "css/main.css"
+			}
+		},
+
 		watch:{
-			css:{
-				files: "css/*.styl",
-				tasks:["styles"],
+			stylesheets:{
+				files: ['css/*.styl'],
+				tasks:['preproccess']
 			},
+
 			livereload:{
 				options:{
 					livereload: 1337
-				}, 
+				},
+
 				files:["**/*.html","css/*.css","js/*.js"]
 			}			
 		}		
 	});
 
 	// MY TASKS
-	grunt.registerTask('observer', ['watch']);
-	grunt.registerTask('styles', ['stylus']);
+	grunt.registerTask('observer', 'watch');
+	grunt.registerTask('preproccess', ['stylus', 'autoprefixer']);
 
 };
