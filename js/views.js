@@ -70,7 +70,6 @@ var TasksView = Backbone.View.extend({
 	initialize: function(){
 		this.render();
 		this.collection.on('add', this.addOne, this);
-		this.collection.on()
 	},
 
 	render: function(){
@@ -83,8 +82,11 @@ var TasksView = Backbone.View.extend({
 	addOne: function(task){
 		var taskView = new TaskView({ model: task });
 		this.$el.append( taskView.render().el );
+
+		return this;
 	}
 });
+
 
 var AddTask = Backbone.View.extend({
 	el: '#todos',
@@ -120,11 +122,6 @@ var AddTask = Backbone.View.extend({
 		if(e.keyCode === 13){
 			this.addTask();
 		}
-	},
-
-	sort_done: function(){
-		var done = this.collection.where({done: true});
-		console.log(done);
 	}
 
 });
