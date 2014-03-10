@@ -70,6 +70,7 @@ var TasksView = Backbone.View.extend({
 	initialize: function(){
 		this.render();
 		this.collection.on('add', this.addOne, this);
+		this.collection.on()
 	},
 
 	render: function(){
@@ -94,6 +95,7 @@ var AddTask = Backbone.View.extend({
 
 	events:{
 		'click #add': 'addTask',
+		'click #filter_done': 'sort_done',
 		'keypress #inputTask': 'updateOnEnter'
 	},
 
@@ -118,7 +120,13 @@ var AddTask = Backbone.View.extend({
 		if(e.keyCode === 13){
 			this.addTask();
 		}
+	},
+
+	sort_done: function(){
+		var done = this.collection.where({done: true});
+		console.log(done);
 	}
+
 });
 
 

@@ -126,7 +126,27 @@ header
 	display none
 
 .edit_box__editing .edit
-	display:inline-block
+	display inline-block
+
+.filter_btns
+	width 100%
+	text-align center
+	margin 1rem 0 0 0
+
+.filter_btn
+	background lightGrey
+	border-radius 4px
+	color  #fff
+	cursor pointer
+	display inline-block
+	line-height 1
+	padding .5rem 1rem
+	text-shadow 1px 1px 1px rgba(#000, .2)
+	&:hover
+		background darken(@background, 10%)
+
+.filter_btn + .filter_btn
+	margin-left 1rem	
 
 .not-done	
 	.icon-checkbox:before
