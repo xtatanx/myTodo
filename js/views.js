@@ -98,7 +98,7 @@ var AddTask = Backbone.View.extend({
 
 	events:{
 		'click #add': 'addTask',
-		'click #filter_done': 'sort_done',
+		'click .filter_btn': 'toggleFilter',
 		'keypress #inputTask': 'updateOnEnter'
 	},
 
@@ -122,6 +122,52 @@ var AddTask = Backbone.View.extend({
 	updateOnEnter: function(e){
 		if(e.keyCode === 13){
 			this.addTask();
+		}
+	},
+
+	toggleFilter: function(e){
+		var filter = $(e.currentTarget).data('filter');
+
+		switch(filter){
+			case 'done':
+				this.collection.each(function(model){
+					this.makeVisible('done', model);
+				}, this);
+				break;
+
+			case('not-done'):
+				this.collection.each(function(model){
+					this.makeVisible('not-done', model);
+				}, this);
+				break;
+
+			default:
+				this.collection.each(function(model){
+					this.makeVisible('all', model);
+				}, this);	
+		}
+	},
+
+	makeVisible: function(attribute, model){
+		switch(attribute){
+			case 'done':
+				if(!model.get('done')){
+					model.set('visible', false);
+				}else{
+					model.set('visible', true);
+				}
+				break;
+
+			case 'not-done':
+				if(model.get('done')){
+					model.set('visible', false);
+				}else{
+					model.set('visible', true);
+				}	
+				break;
+
+			default:
+				model.set('visible', true);
 		}
 	}
 
