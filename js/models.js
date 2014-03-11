@@ -1,7 +1,8 @@
 var Task = Backbone.Model.extend({
 	defaults:{
 		title: "An empyt task..",
-		done: false
+		done: false,
+		visible: true
 	},
 
 	validate: function(attrs){
