@@ -41,6 +41,7 @@ header{background:#255676;padding:.5rem 1rem;-webkit-box-shadow:0 3px 1px rgba(0
 .task-wrapper{padding:4px;border-radius:4px;position:relative;display:inline-block;}
 .task-wrapper:hover{background:rgba(170,170,170,0.2);}
 .task-wrapper:hover .close_btn{opacity:1}
+.task-wrapper__not-visible{display:none}
 .the-task{background:#fbfbfb;border-radius:4px;padding:.25rem;width:56.25%;margin-right:16px;max-width:500px;font-size:1.1rem;font-family:'droid_sansregular';color:#777;border:1px solid #aaa}
 .ir{background-color:transparent;border:0;overflow:hidden;*text-indent:-9999px}
 .ir:before{content:"";display:#000;width:0;height:150%}
