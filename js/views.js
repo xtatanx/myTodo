@@ -84,7 +84,8 @@ var TasksView = Backbone.View.extend({
 		this.$el.append( taskView.render().el );
 
 		return this;
-	}
+	},
+	
 });
 
 
