@@ -128,6 +128,9 @@ header
 .edit_box__editing .edit
 	display inline-block
 
+.filter_title
+		margin-right 1%	
+
 .filter_btns
 	width 100%
 	text-align center
@@ -144,6 +147,8 @@ header
 	text-shadow 1px 1px 1px rgba(#000, .2)
 	&:hover
 		background darken(@background, 10%)
+	&__active, &__active:hover
+		background linear-gradient(to bottom, #45B239 0%,#47ba3b 100%)
 
 .filter_btn + .filter_btn
 	margin-left 1rem	

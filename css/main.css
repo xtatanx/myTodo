@@ -24,9 +24,11 @@ header{background:#255676;padding:.5rem 1rem;-webkit-box-shadow:0 3px 1px rgba(0
 .edit{display:none;border-radius:1px 1px 1px #000}
 .display__none{display:none}
 .edit_box__editing .edit{display:inline-block}
+.filter_title{margin-right:1%}
 .filter_btns{width:100%;text-align:center;margin:1rem 0 0 0}
 .filter_btn{background:#aaa;border-radius:4px;color:#fff;cursor:pointer;display:inline-block;line-height:1;padding:.5rem 1rem;text-shadow:1px 1px 1px rgba(0,0,0,0.2);}
 .filter_btn:hover{background:#999}
+.filter_btn__active,.filter_btn__active:hover{background:-webkit-gradient(linear, left top, left bottom, from(#45b239), to(#47ba3b));background:-webkit-linear-gradient(top, #45b239 0%, #47ba3b 100%);background:linear-gradient(to bottom,#45b239 0%,#47ba3b 100%)}
 .filter_btn + .filter_btn{margin-left:1rem}
 .not-done .icon-checkbox:before{content:"\e601";color:#db2323}
 .not-done .task_title{text-decoration:none;color:#5e5e5e}

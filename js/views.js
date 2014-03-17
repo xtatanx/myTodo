@@ -98,7 +98,7 @@ var AddTask = Backbone.View.extend({
 
 	events:{
 		'click #add': 'addTask',
-		'click .filter_btn': 'toggleFilter',
+		'click .filter_btn': 'filterAndActive',
 		'keypress #inputTask': 'updateOnEnter'
 	},
 
@@ -125,49 +125,46 @@ var AddTask = Backbone.View.extend({
 		}
 	},
 
+	filterAndActive: function(e){
+		this.filterByActive(e);
+		this.toggleFilter(e);
+	},
+
+	filterByActive: function(e){
+		var button = $(e.currentTarget);
+		var buttons = button.parent().find(".filter_btn");
+		buttons.removeClass("filter_btn__active");
+		button.addClass("filter_btn__active");
+	},
+
 	toggleFilter: function(e){
 		var filter = $(e.currentTarget).data('filter');
 
 		switch(filter){
 			case 'done':
 				this.collection.each(function(model){
-					this.makeVisible('done', model);
+					if(!model.get('done')){
+						model.set('visible', false);
+					}else{
+						model.set('visible', true);
+					}		
 				}, this);
 				break;
 
 			case('not-done'):
 				this.collection.each(function(model){
-					this.makeVisible('not-done', model);
+					if(model.get('done')){
+						model.set('visible', false);
+					}else{
+						model.set('visible', true);
+					}	
 				}, this);
 				break;
 
 			default:
 				this.collection.each(function(model){
-					this.makeVisible('all', model);
+					model.set('visible', true);
 				}, this);	
-		}
-	},
-
-	makeVisible: function(attribute, model){
-		switch(attribute){
-			case 'done':
-				if(!model.get('done')){
-					model.set('visible', false);
-				}else{
-					model.set('visible', true);
-				}
-				break;
-
-			case 'not-done':
-				if(model.get('done')){
-					model.set('visible', false);
-				}else{
-					model.set('visible', true);
-				}	
-				break;
-
-			default:
-				model.set('visible', true);
 		}
 	}
 
