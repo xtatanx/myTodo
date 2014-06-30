@@ -1,8 +1,8 @@
-var Tasks = Backbone.Collection.extend({
-	model: Task,
-  firebase: new Backbone.Firebase("https://the-todo-app.firebaseio.com")
+var app = app || {};
+
+app.Tasks = Backbone.Firebase.Collection.extend({
+	model: app.Task,
+  firebase: "https://the-todo-app.firebaseio.com/todos"
 
 });
 
-
-var tasks = new Tasks();

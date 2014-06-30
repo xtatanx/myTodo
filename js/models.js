@@ -1,4 +1,5 @@
-var Task = Backbone.Model.extend({
+var app = app || {};
+app.Task = Backbone.Model.extend({
 	defaults:{
 		title: "An empyt task..",
 		done: false,
@@ -12,4 +13,3 @@ var Task = Backbone.Model.extend({
 	}
 });
 
-var task = new Task;

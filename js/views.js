@@ -1,11 +1,13 @@
-var TaskView = Backbone.View.extend({
+var app = app || {};
+
+app.TaskView = Backbone.View.extend({
 	tagName: "li",
 
 	template: _.template( $('#task').html() ),
 
 	initialize: function(){
 		this.model.on('change', this.render, this);
-		this.model.on('destroy', this.remove, this);
+		this.model.on('remove', this.remove, this);
 	},
 
 	render: function(){
@@ -60,11 +62,11 @@ var TaskView = Backbone.View.extend({
 	},
 
 	clear:function(){
-		this.model.destroy();
+		app.tasks.remove(this.model);
 	}
 });
 
-var TasksView = Backbone.View.extend({
+app.TasksView = Backbone.View.extend({
 	el: '#tasks',
 
 	initialize: function(){
@@ -80,21 +82,17 @@ var TasksView = Backbone.View.extend({
 	},
 
 	addOne: function(task){
-		var taskView = new TaskView({ model: task });
+		var taskView = new app.TaskView({ model: task });
 		this.$el.append( taskView.render().el );
 
 		return this;
-	},
+	}
 	
 });
 
 
-var AddTask = Backbone.View.extend({
+app.AddTask = Backbone.View.extend({
 	el: '#todos',
-
-	initialize: function(){
-		this.collection.fetch();
-	},
 
 	events:{
 		'click #add': 'addTask',
@@ -110,7 +108,7 @@ var AddTask = Backbone.View.extend({
 		if($.trim(taskTitle) === ''){//check if the input has some text in it
 			this.displayMessage("Todo's can not be empty");
 		}else{
-			var task = new Task( {title: taskTitle} ); // create the task model
+			var task = new app.Task( {title: taskTitle} ); // create the task model
 			this.collection.create(task); //add the model to the collection			
 		}
 	},
@@ -169,7 +167,4 @@ var AddTask = Backbone.View.extend({
 	}
 
 });
-
-
-var tasksView = new TasksView( {collection: tasks} );
-var addTask = new AddTask( {collection: tasks} ); 
+ 
