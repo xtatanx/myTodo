@@ -1,7 +1,7 @@
 var Tasks = Backbone.Collection.extend({
 	model: Task,
+  firebase: new Backbone.Firebase("https://the-todo-app.firebaseio.com")
 
-	localStorage: new Backbone.LocalStorage("todos-collection")
 });
 
 
