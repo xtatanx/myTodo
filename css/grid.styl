@@ -1,0 +1,16 @@
+columns = 12
+maxWidth = 100
+increment = maxWidth/columns
+    
+generate-grid(columns, maxWidth, increment)
+  total = increment
+  for x, num in (0..(columns - 1))
+    .column-{x+1}
+      width unit(total, "%")
+    total = total + increment
+
+[class^=column-]
+  padding 0 16px
+  float left  
+    
+generate-grid(columns, maxWidth, increment)    

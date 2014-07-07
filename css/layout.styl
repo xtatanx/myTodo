@@ -1,0 +1,93 @@
+*,
+*:after,
+*:before
+  box-sizing border-box
+
+body
+  font-size 18px
+  font-family mainFont
+  color darkColor
+  text-align center
+  font-smoothing antialiased
+
+.button
+  background lighten(darkColor, 70%)
+  border-radius .2em
+  padding 0 20px
+  height 34px
+  text-shadow 1px 1px 1px rgba(darkColor, .2)
+  border none
+  color lightColor
+  line-height 34px
+  display inline-block
+  font-family mainFont
+  font-smoothing antialiased
+  &:hover
+    background lighten(darkColor, 60%)
+  &__yellow
+    background linear-gradient(top, mainYellow , darken(mainYellow, 10%))
+    &:hover
+      background linear-gradient(top, darken(mainYellow, 10%), darken(mainYellow, 20%))
+
+  &__blue
+    background linear-gradient(top, mainBlue , darken(mainBlue, 10%))
+    &:hover
+      background linear-gradient(top, darken(mainBlue, 10%), darken(mainBlue, 20%))
+
+  &__red
+    background linear-gradient(top, mainRed , darken(mainRed, 10%))
+    &:hover
+      background linear-gradient(top, darken(mainRed, 10%), darken(mainRed, 20%))              
+
+.container
+  margin 0 auto
+  width 100%
+  max-width 1280px
+  padding 0 16px
+  clearfix()
+
+.row
+  margin-left -16px
+  margin-right -16px
+  margin-bottom 20px
+  clearfix()
+
+.section-title
+  color darken(mainBlue, 40%)
+  text-transform uppercase
+  font-family titleFont
+  font-size unit(36/18,em)
+  margin-bottom 40px
+  &:after
+    height 6px
+    content " "
+    display block
+    margin 0 auto
+    background darken(mainBlue, 60%)
+    width 120px
+
+.unstyled-link
+  color lightColor
+  text-decoration none
+
+[class^="icon-"], [class*=" icon-"]
+  font-family 'myTodo'
+  speak none
+  font-style normal
+  font-weight normal
+  font-variant normal
+  text-transform none
+  line-height 1
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+
+.icon-lock:before 
+  content "\e600"
+
+.icon-cloud:before 
+  content "\e601"
+
+.icon-share:before 
+  content "\e602"
+
