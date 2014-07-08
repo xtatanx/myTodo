@@ -10,7 +10,9 @@ app.Router = Backbone.Router.extend({
 
   landingPage: function(){
     console.log('landing page');
-    app.landingPage = new app.LandingView();
+    if(!app.landingPage){
+      app.landingPage = new app.LandingView();
+    }
   },
 
   getTodos: function(id){
@@ -18,26 +20,7 @@ app.Router = Backbone.Router.extend({
   },
 
   signUp: function(method){
-    console.log('sign in up');
-    var loginRef = new Firebase('https://the-todo-app.firebaseio.com/users');
-    var auth = new FirebaseSimpleLogin(loginRef, function(error, user) {
-      if(error){
-        console.log(error);
-        app.router.navigate('', {trigger: true});
-      }else{
-        if(loginRef.child(user.id)){
-          console.log('user exists ---> make login');
-        }else{
-          console.log('user doesnt exist creating it');
-          loginRef.child(user.id).set(user);
-        }
-      }
-
-    });
-
-    auth.login('facebook', {
-      scope: 'public_profile,email'
-    });        
+    console.log('sign in up');        
   },
 
   loginUser: function(){
@@ -45,3 +28,41 @@ app.Router = Backbone.Router.extend({
   }
 
 });
+
+app.Firebase = (function(){
+
+  var loginRef = new Firebase('https://the-todo-app.firebaseio.com');
+  var userExist = null;    
+  var auth = new FirebaseSimpleLogin(loginRef, function(error, user) {
+    if(error){
+      console.log(error);
+      app.router.navigate('', {trigger: true});
+    }else{
+      loginRef.once('value', function(dataSnapshot){
+        userExist = dataSnapshot.hasChild(user.id);
+        if(userExist){
+          console.log('user exist redirecting home');
+          app.router.navigate('', {trigger: true});
+        }else{
+          console.log('creating user');
+          loginRef.child(user.id).set({
+            name: user.displayName,
+            picture: user.thirdPartyUserData.picture.data.url
+          });
+        }          
+      });        
+    }
+  });
+
+  function authorize(){
+    auth.login('facebook', {
+      scope: 'public_profile,email'
+    });
+  }
+
+  return {
+    authorize: authorize
+  };
+
+}());
+
