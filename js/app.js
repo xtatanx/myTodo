@@ -1,10 +1,15 @@
 var app = app || {};
 
 app.init = function(){
-  this.task = new app.Task;
-  this.tasks = new app.Tasks();
-  this.tasksView = new app.TasksView( {collection: app.tasks} );
-  this.addTask = new app.AddTask( {collection: app.tasks} ); 
+  // models
+  // this.task = new app.Task;
+  // views
+  // this.tasksView = new app.TasksView( {collection: app.tasks} );
+  // this.addTask = new app.AddTask( {collection: app.tasks} );
+
+  // collections
+  // this.tasks = new app.Tasks();
+  // router 
   this.router = new app.Router(); 
   Backbone.history.start({pushState: true});
 }

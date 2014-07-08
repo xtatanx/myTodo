@@ -1,5 +1,37 @@
 var app = app || {};
 
+app.LandingView = Backbone.View.extend({
+  el: 'body',
+
+  template: _.template( $('#index').html() ),
+
+  initialize: function(){
+    this.render();
+  },
+
+  render: function(){
+    var template = this.template();
+    this.$el.html( template );
+    return this;
+  },
+
+  events:{
+    'click .signUp': 'signUp',
+    'click #login': 'login'
+  },
+
+  signUp: function(e){
+    e.preventDefault();
+    app.router.navigate('sign-up', {trigger: true});
+  },
+
+  login: function(e){
+    e.preventDefault();
+    app.router.navigate('login', {trigger: true});
+  }
+
+});
+
 app.TaskView = Backbone.View.extend({
 	tagName: "li",
 
