@@ -1,4 +1,13 @@
 var app = app || {};
+
+app.User = Backbone.Model.extend({
+  defaults:{
+    authenticated: false,
+    name: "",
+    pic: ""
+  }
+});
+
 app.Task = Backbone.Model.extend({
 	defaults:{
 		title: "An empyt task..",

@@ -5,9 +5,36 @@
 .header
   background mainBlue
 
+.user-info
+  display none
+  line-height 3.7
+  clearfix();
+  &_pic
+    border-radius 50%
+    width 40px
+    height 40px
+    overflow hidden
+    float left
+    margin-right 16px
+    margin-top 7.25px
+    box-shadow 1px 1px 1px rgba(darkColor, .2)
+    img
+      width 100%
+
+  &_name
+    float left
+    color lightColor
+    font-size unit(15/18,em)      
+
 .logo
   font-family titleFont
   color lightColor
   margin 0
   line-height 2
   font-size unit(28/18, em)
+
+.is-user
+  .connect
+    display none
+  .user-info
+    display block    

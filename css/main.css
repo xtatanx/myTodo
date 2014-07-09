@@ -55,7 +55,15 @@ body{font-size:18px;font-family:'droid_sansregular',sans-serif;color:#161616;tex
 .connect{line-height:3.1;}
 .connect_link{margin:0 4px}
 .header{background:#3087d9}
+.user-info{display:none;line-height:3.7;zoom:1;}
+.user-info:before,.user-info:after{content:"";display:table}
+.user-info:after{clear:both}
+.user-info_pic{border-radius:50%;width:40px;height:40px;overflow:hidden;float:left;margin-right:16px;margin-top:7.25px;-webkit-box-shadow:1px 1px 1px rgba(22,22,22,0.2);box-shadow:1px 1px 1px rgba(22,22,22,0.2);}
+.user-info_pic img{width:100%}
+.user-info_name{float:left;color:#f7fcff;font-size:.8333333333333334em}
 .logo{font-family:'source_sans_probold',sans-serif;color:#f7fcff;margin:0;line-height:2;font-size:1.5555555555555556em}
+.is-user .connect{display:none}
+.is-user .user-info{display:block}
 .app-feature_icon{font-size:3.3333333333333335em;color:#d93033}
 .app-feature_title{text-transform:uppercase}
 .app-feature_text{margin:0;text-align:left}

@@ -7,6 +7,7 @@ app.LandingView = Backbone.View.extend({
 
   initialize: function(){
     this.render();
+    app.connectView = new app.ConnectView({model: app.user});
   },
 
   render: function(){
@@ -15,19 +16,46 @@ app.LandingView = Backbone.View.extend({
     return this;
   },
 
-  events:{
+  events: {
+    'click .signUpBody': 'triggerSignUp'
+  },
+
+  triggerSignUp: function(){
+    app.connectView.signUp();
+  }
+
+});
+
+app.ConnectView = Backbone.View.extend({
+  el: 'header',
+
+  template: _.template( $('#connect').html() ),
+
+  initialize: function(){
+    this.render();
+    this.on('signUp', this.signUp);
+    this.model.on('change', this.render, this);
+  },
+
+  render: function(){
+    var template = this.template(this.model.toJSON());
+    console.log(this.model.toJSON());
+    this.$el.html(template);
+    console.log('rendering');
+  },
+
+  events: {
     'click .signUp': 'signUp',
     'click #login': 'login'
   },
 
   signUp: function(e){
     e.preventDefault();
-    app.router.navigate('sign-up', {trigger: true});
+    app.authClient.login('facebook');
   },
 
-  login: function(e){
-    e.preventDefault();
-    app.router.navigate('login', {trigger: true});
+  login: function(){
+    console.log('login');
   }
 
 });

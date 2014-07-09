@@ -10,6 +10,9 @@ app.Router = Backbone.Router.extend({
 
   landingPage: function(){
     console.log('landing page');
+    if(!app.user){
+      app.user = new app.User();
+    }    
     if(!app.landingPage){
       app.landingPage = new app.LandingView();
     }
@@ -29,40 +32,4 @@ app.Router = Backbone.Router.extend({
 
 });
 
-app.Firebase = (function(){
-
-  var loginRef = new Firebase('https://the-todo-app.firebaseio.com');
-  var userExist = null;    
-  var auth = new FirebaseSimpleLogin(loginRef, function(error, user) {
-    if(error){
-      console.log(error);
-      app.router.navigate('', {trigger: true});
-    }else{
-      loginRef.once('value', function(dataSnapshot){
-        userExist = dataSnapshot.hasChild(user.id);
-        if(userExist){
-          console.log('user exist redirecting home');
-          app.router.navigate('', {trigger: true});
-        }else{
-          console.log('creating user');
-          loginRef.child(user.id).set({
-            name: user.displayName,
-            picture: user.thirdPartyUserData.picture.data.url
-          });
-        }          
-      });        
-    }
-  });
-
-  function authorize(){
-    auth.login('facebook', {
-      scope: 'public_profile,email'
-    });
-  }
-
-  return {
-    authorize: authorize
-  };
-
-}());
 

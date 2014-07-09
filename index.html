@@ -14,17 +14,10 @@
     </head>
     <body>
 
-        <!-- Templates -->
+        <!-- TEMPLATES -->
+        <!-- template for landing page -->
         <script type="text/template" id="index">
-          <header class="header" id="header">
-            <div class="container">
-              <h1 class="logo pushleft">myTodo</h1>
-              <div class="pushright connect">
-                <a href="#" class="unstyled-link button button__red connect_link signUp" data-method="facebook">Sign up</a>
-                <a href="#" class="unstyled-link connect_link" id="login" data-method="facebook">Log in</a>             
-              </div>            
-            </div>
-          </header>
+          <header class="header" id="header"></header>
           <main>
             <section class="main-content">
               <div class="main-banner vcenterer">
@@ -66,7 +59,7 @@
                       </div>
                     </div>                  
                   </div>
-                  <button class="button button__red">Try it now</button>
+                  <button class="button button__red signUpBody">Try it now</button>
                 </div>
               </article>
             </section>
@@ -77,6 +70,25 @@
             </div>
           </footer>        
         </script>
+        <!-- template for signUp, login and connected user -->
+        <script type="text/template" id="connect">
+          <div class="container">
+            <h1 class="logo pushleft">myTodo</h1>
+            <div class="pushright <% if(authenticated){ %>is-user<% } %>"  >
+              <div class="connect">
+                <a href="#" class="unstyled-link button button__red connect_link signUp" data-method="facebook">Sign up</a>
+                <a href="#" class="unstyled-link connect_link" id="login" data-method="facebook">Log in</a>
+              </div>
+              <div class="user-info">
+                <figure class="user-info_pic">
+                  <img alt="user profile pic" src="<%= pic %>" />
+                </figure>
+                <span class="user-info_name"> <%= name %> </span>
+              </div>
+            </div>            
+          </div>
+        </script>
+        <!-- template for a single task -->
         <script type="text/template" id="task">
             <div class="task-wrapper <% if(!done){ %> not-done <% } %> <% if(!visible) { %> task-wrapper__not-visible <% } %>">
                 <span class="icon-checkbox " ></span>
@@ -85,20 +97,19 @@
                 <span class="close_btn">x</span> 
             </div>
         </script>
-        <!-- End of templates  -->
+        <!-- End of templates  -->      
         <script src="bower_components/jquery/jquery.min.js"></script>
         <script src="bower_components/underscore/underscore-min.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
         <script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
         <script src="https://cdn.firebase.com/libs/backfire/0.3.0/backbone-firebase.min.js"></script>
         <script src='https://cdn.firebase.com/js/simple-login/1.6.1/firebase-simple-login.js'></script>
+        <script src="js/authClient.js"></script>
         <script src="js/models.js"></script>
         <script src="js/collections.js"></script>
         <script src="js/views.js"></script>
         <script src="js/router.js"></script>
         <script src="js/app.js"></script>
-        <script src="js/main.js"></script>
-
     </body>
 </html>
 
