@@ -1,5 +1,7 @@
 var app = app || {};
 
+
+// view for general layout
 app.LandingView = Backbone.View.extend({
   el: 'body',
 
@@ -7,7 +9,8 @@ app.LandingView = Backbone.View.extend({
 
   initialize: function(){
     this.render();
-    app.connectView = new app.ConnectView({model: app.user});
+    this.createHeader();
+    this.createMainLayout();
   },
 
   render: function(){
@@ -16,16 +19,25 @@ app.LandingView = Backbone.View.extend({
     return this;
   },
 
+  createHeader: function(){
+    app.connectView = new app.ConnectView({model: app.user});
+  },
+
+  createMainLayout: function(){
+    app.mainSection = new app.MainView();
+  },
+
   events: {
     'click .signUpBody': 'triggerSignUp'
   },
 
-  triggerSignUp: function(){
-    app.connectView.signUp();
+  triggerSignUp: function(e){
+    app.connectView.signUp(e);
   }
 
 });
 
+// view for the header of the site
 app.ConnectView = Backbone.View.extend({
   el: 'header',
 
@@ -39,9 +51,10 @@ app.ConnectView = Backbone.View.extend({
 
   render: function(){
     var template = this.template(this.model.toJSON());
-    console.log(this.model.toJSON());
     this.$el.html(template);
     console.log('rendering');
+
+    return this;
   },
 
   events: {
@@ -55,11 +68,162 @@ app.ConnectView = Backbone.View.extend({
   },
 
   login: function(){
-    console.log('login');
+    app.authClient.login('facebook');
   }
 
 });
 
+// main view of the landing page
+app.MainView = Backbone.View.extend({
+  tagName: 'section',
+  className: 'main-content',
+
+  template: _.template( $('#main-section').html() ),
+
+  initialize: function(){
+    this.render();
+  },
+
+  render: function(){
+    var template = this.template();
+    this.$el.html(template).appendTo('#main-wrapper');
+  },
+
+  destroy: function(){
+    this.remove();
+    this.unbind();
+  }
+
+});
+// view for the todo section
+app.AddTask = Backbone.View.extend({
+  tagName: 'section',
+  className: 'main-content',
+  template: _.template( $('#user-todos').html() ),
+
+  events:{
+    'click #add': 'addTask',
+    'click .filter_btn': 'filterAndActive',
+    'keypress #inputTask': 'updateOnEnter'
+  },
+
+  initialize: function(){
+    this.render();
+  },
+
+  render: function(){
+     var template = this.template();
+     this.$el.html(template).appendTo('#main-wrapper');
+     this.delegateEvents();
+     return this;
+  },
+
+  addTask: function(){
+
+    var taskTitle = $('#inputTask'). val();
+    $('#inputTask').val(""); //clear the input
+
+    if($.trim(taskTitle) === ''){//check if the input has some text in it
+      this.displayMessage("Todo's can not be empty");
+    }else{
+      var task = new app.Task( {title: taskTitle} ); // create the task model
+      this.collection.create(task); //add the model to the collection     
+    }
+  },
+
+  displayMessage: function(msg){
+    $('#inputTask').focus().attr("placeholder", msg);
+  },
+
+  updateOnEnter: function(e){
+    if(e.keyCode === 13){
+      this.addTask();
+    }
+  },
+
+  filterAndActive: function(e){
+    this.filterByActive(e);
+    this.toggleFilter(e);
+  },
+
+  filterByActive: function(e){
+    var button = $(e.currentTarget);
+    var buttons = button.parent().find(".filter_btn");
+    buttons.removeClass("filter_btn__active");
+    button.addClass("filter_btn__active");
+  },
+
+  toggleFilter: function(e){
+    var filter = $(e.currentTarget).data('filter');
+
+    switch(filter){
+      case 'done':
+        this.collection.each(function(model){
+          if(!model.get('done')){
+            model.set('visible', false);
+          }else{
+            model.set('visible', true);
+          }   
+        }, this);
+        break;
+
+      case('not-done'):
+        this.collection.each(function(model){
+          if(model.get('done')){
+            model.set('visible', false);
+          }else{
+            model.set('visible', true);
+          } 
+        }, this);
+        break;
+
+      default:
+        this.collection.each(function(model){
+          model.set('visible', true);
+        }, this); 
+    }
+  },
+
+  destroy: function(){
+    this.remove();
+    this.unbind();
+  }  
+
+});
+
+// view for the tasks
+app.TasksView = Backbone.View.extend({
+  el: '#tasks',
+
+  initialize: function(){
+    this._views = [];
+    this.render();
+    this.collection.on('add', this.addOne, this);
+  },
+
+  render: function(){
+    this.collection.each(this.addOne, this);
+
+    return this;
+
+  },
+
+  addOne: function(task){
+    var taskView = new app.TaskView({ model: task });
+    this._views.push(taskView);
+    $('#tasks').append( taskView.render(). el );
+
+    return this;
+  },
+
+  destroy: function(){
+    this.remove();
+    this.unbind();
+  }  
+  
+});
+
+// view for a single task
 app.TaskView = Backbone.View.extend({
 	tagName: "li",
 
@@ -123,110 +287,15 @@ app.TaskView = Backbone.View.extend({
 
 	clear:function(){
 		app.tasks.remove(this.model);
-	}
+	},
+
+  destroy: function(){
+    this.remove();
+    this.unbind();
+  }
+
 });
 
 
 
-app.TasksView = Backbone.View.extend({
-	el: '#tasks',
-
-	initialize: function(){
-		this.render();
-		this.collection.on('add', this.addOne, this);
-	},
-
-	render: function(){
-		this.collection.each(this.addOne, this);
-
-		return this;
-
-	},
-
-	addOne: function(task){
-		var taskView = new app.TaskView({ model: task });
-		this.$el.append( taskView.render().el );
-
-		return this;
-	}
-	
-});
-
-
-app.AddTask = Backbone.View.extend({
-	el: '#todos',
-
-	events:{
-		'click #add': 'addTask',
-		'click .filter_btn': 'filterAndActive',
-		'keypress #inputTask': 'updateOnEnter'
-	},
-
-	addTask: function(){
-
-		var taskTitle = $('#inputTask'). val();
-		$('#inputTask').val(""); //clear the input
-
-		if($.trim(taskTitle) === ''){//check if the input has some text in it
-			this.displayMessage("Todo's can not be empty");
-		}else{
-			var task = new app.Task( {title: taskTitle} ); // create the task model
-			this.collection.create(task); //add the model to the collection			
-		}
-	},
-
-	displayMessage: function(msg){
-		$('#inputTask').focus().attr("placeholder", msg);
-	},
-
-	updateOnEnter: function(e){
-		if(e.keyCode === 13){
-			this.addTask();
-		}
-	},
-
-	filterAndActive: function(e){
-		this.filterByActive(e);
-		this.toggleFilter(e);
-	},
-
-	filterByActive: function(e){
-		var button = $(e.currentTarget);
-		var buttons = button.parent().find(".filter_btn");
-		buttons.removeClass("filter_btn__active");
-		button.addClass("filter_btn__active");
-	},
-
-	toggleFilter: function(e){
-		var filter = $(e.currentTarget).data('filter');
-
-		switch(filter){
-			case 'done':
-				this.collection.each(function(model){
-					if(!model.get('done')){
-						model.set('visible', false);
-					}else{
-						model.set('visible', true);
-					}		
-				}, this);
-				break;
-
-			case('not-done'):
-				this.collection.each(function(model){
-					if(model.get('done')){
-						model.set('visible', false);
-					}else{
-						model.set('visible', true);
-					}	
-				}, this);
-				break;
-
-			default:
-				this.collection.each(function(model){
-					model.set('visible', true);
-				}, this);	
-		}
-	}
-
-});
  

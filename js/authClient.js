@@ -10,6 +10,7 @@ var app = app || {};
     var auth;
     var userName;
     var userPic;
+    var userId;
 
     function createUser(user){
       loginRef.child(user.id).set({
@@ -24,6 +25,10 @@ var app = app || {};
       });      
     }
 
+    function getUserId(){
+      return userId;
+    }
+
     auth = new FirebaseSimpleLogin(loginRef, function(error, user) {
       if(error){
         // If authentication fail's redirect to homepage
@@ -31,18 +36,19 @@ var app = app || {};
       }else if(user){ // if user succesfully autenthicate
         userName = user.displayName;
         userPic = user.thirdPartyUserData.picture.data.url;
+        userId = user.id;
 
         loginRef.once('value', function(dataSnapshot){
           userExist = dataSnapshot.hasChild(user.id);
           if(userExist){
-            // if user already exist on db redirect to home
-            console.log('user exist redirecting home');
+            // if user already exist navigate to its current list of Todos
+            console.log('user exist retrieveng todos');
             app.user.set({
               authenticated: true,
               name: userName,
               pic: userPic
             });
-            // app.router.navigate('/users/' + user.id, {trigger: true}); uncomment too keep advancing
+            app.router.navigate('/users/' + user.id, {trigger: true});
           }else{
             // if user doesnt exist create a new user on db
             console.log('creating user');
@@ -54,7 +60,8 @@ var app = app || {};
     });    
 
     return{
-      login: login
+      login: login,
+      userId: getUserId
     }
 
   }());
