@@ -37,6 +37,15 @@ var app = app || {};
         userName = user.displayName;
         userPic = user.thirdPartyUserData.picture.data.url;
         userId = user.id;
+        console.log(user.id);
+        // at this point create the collection
+        app.Tasks = Backbone.Firebase.Collection.extend({
+          model: app.Task,
+          firebase: 'https://the-todo-app.firebaseio.com/users/'+user.id+'/todos'
+        });
+        app.tasks = new app.Tasks();
+        app.addTask = new app.AddTask({collection: app.tasks});
+        app.tasksView = new app.TasksView({collection: app.tasks});        
 
         loginRef.once('value', function(dataSnapshot){
           userExist = dataSnapshot.hasChild(user.id);
@@ -54,7 +63,7 @@ var app = app || {};
             console.log('creating user');
             createUser(user);
           }          
-        });        
+        });                
       }
 
     });    

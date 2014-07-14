@@ -4,6 +4,7 @@ app.Router = Backbone.Router.extend({
   routes:{
     '': 'landingPage',
     'users/:id': 'getTodos',
+    'users': 'getTodos',
     'sign-up': 'signUp',
     'login': 'loginUser'
   },
@@ -12,7 +13,8 @@ app.Router = Backbone.Router.extend({
     console.log('landing page');
     if(!app.user){
       app.user = new app.User();
-    }    
+    }
+
     if(!app.landingPage){
       app.landingPage = new app.LandingView();
     }
@@ -35,17 +37,19 @@ app.Router = Backbone.Router.extend({
 
   getTodos: function(id){
     console.log('get todos for: ' + id);
+    if(!app.user){
+      app.user = new app.User();
+    }
+
+    if(!app.landingPage){
+      app.landingPage = new app.LandingView();
+    }
+
     app.mainSection.destroy();
+
     if(!app.addTask && !app.tasksView){
       console.log('creating views');
-      // at this point create the collection
-      app.Tasks = Backbone.Firebase.Collection.extend({
-        model: app.Task,
-        firebase: 'https://the-todo-app.firebaseio.com/users/'+app.authClient.userId()+'/todos'
-      });      
-      app.tasks = new app.Tasks();
-      app.addTask = new app.AddTask({collection: app.tasks});
-      app.tasksView = new app.TasksView({collection: app.tasks});
+      console.log(app.authClient.userId());     
     }else{
       console.log('just render');
       app.addTask.render();

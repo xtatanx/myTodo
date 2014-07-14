@@ -149,8 +149,8 @@ app.AddTask = Backbone.View.extend({
   filterByActive: function(e){
     var button = $(e.currentTarget);
     var buttons = button.parent().find(".filter_btn");
-    buttons.removeClass("filter_btn__active");
-    button.addClass("filter_btn__active");
+    buttons.removeClass("active");
+    button.addClass("active");
   },
 
   toggleFilter: function(e){
@@ -243,7 +243,7 @@ app.TaskView = Backbone.View.extend({
 	},
 
 	events: {
-		'click .icon-checkbox': 'toggleState',
+		'click .checkbox': 'toggleState',
 		'click .task_title': 'editTask',
 		'keypress .edit': 'updateOnEnter',
 		'click  .close_btn': 'clear'

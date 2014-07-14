@@ -13,36 +13,7 @@ body
   color darkColor
   text-align center
   font-smoothing antialiased
-  margin-bottom 132px
-
-.button
-  background lighten(darkColor, 70%)
-  border-radius .2em
-  padding 0 20px
-  height 34px
-  text-shadow 1px 1px 1px rgba(darkColor, .2)
-  border none
-  color lightColor
-  line-height 34px
-  display inline-block
-  font-family mainFont
-  font-smoothing antialiased
-  &:hover
-    background lighten(darkColor, 60%)
-  &__yellow
-    background linear-gradient(top, mainYellow , darken(mainYellow, 10%))
-    &:hover
-      background linear-gradient(top, darken(mainYellow, 10%), darken(mainYellow, 20%))
-
-  &__blue
-    background linear-gradient(top, mainBlue , darken(mainBlue, 10%))
-    &:hover
-      background linear-gradient(top, darken(mainBlue, 10%), darken(mainBlue, 20%))
-
-  &__red
-    background linear-gradient(top, mainRed , darken(mainRed, 10%))
-    &:hover
-      background linear-gradient(top, darken(mainRed, 10%), darken(mainRed, 20%))              
+  margin-bottom 132px              
 
 .container
   margin 0 auto
@@ -90,12 +61,18 @@ body
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
 
+.icon-check:before
+  content "\f00c"
+
+.icon-times:before
+  content "\f00d"
+
 .icon-lock:before 
   content "\e600"
 
-.icon-cloud:before 
+.icon-cloud:before
   content "\e601"
 
-.icon-share:before 
+.icon-share:before
   content "\e602"
 
