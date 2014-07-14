@@ -32,12 +32,20 @@ module.exports = function(grunt) {
 				tasks:['preproccess']
 			},
 
+      buildDev:{
+        files: ['*.html', 'css/*.css', 'js/*.js', 'img/*'],
+        tasks: ['buildDev'],
+        options: {
+          debounceDelay: 5000
+        }     
+      },
+
 			livereload: {
 				options:{
 					livereload: true
 				},
 
-				files:['*.html', 'css/*.css', 'js/*.js']
+				files:['*.html', 'css/*.css', 'js/*.js', 'img/*']
 			}
 
 		},
@@ -48,7 +56,30 @@ module.exports = function(grunt) {
         '**', 
         '!css/*.styl',
         '!Gruntfile.js',
-        '!production',
+        '!production/**',
+        '!development/**',
+        '!package.json',
+        '!bower.json',
+        '!firebase.json',
+        '!node_modules/**',
+        '!**.md',
+        '!LICENSE',
+        '!bower_components/**',
+        'js/**.js',
+        'css/**.css',
+        '!css/to-doit.min.css',
+        '!js/to-doit.min.js'        
+        ],
+        dest: 'development/'
+      },
+
+      production:{
+        src: [
+        '**', 
+        '!css/*.styl',
+        '!Gruntfile.js',
+        '!production/**',
+        '!development/**',
         '!package.json',
         '!bower.json',
         '!firebase.json',
@@ -61,13 +92,17 @@ module.exports = function(grunt) {
         'css/to-doit.min.css',
         'js/to-doit.min.js'
         ],
-        dest: 'development/'
-      }
+        dest: 'production/'
+      }      
     },
 
     clean:{
       development:[
         'development/**'
+      ],
+
+      production:[
+        'production/**'
       ]
     },
 
@@ -121,6 +156,12 @@ module.exports = function(grunt) {
         files:{
           'development/index.html': 'index.html'
         }
+      },
+
+      production:{
+        files:{
+          'production/index.html': 'index.html'  
+        }
       }
     }
 
@@ -130,5 +171,5 @@ module.exports = function(grunt) {
 	grunt.registerTask('observer','watch');
 	grunt.registerTask('preproccess', ['stylus', 'autoprefixer']);
   grunt.registerTask('buildDev', ['concat', 'cssmin', 'uglify', 'clean:development', 'copy:development', 'targethtml:development']);
-
+  grunt.registerTask('buildProd', ['concat', 'cssmin', 'uglify', 'clean:production', 'copy:production', 'targethtml:production']);
 };
