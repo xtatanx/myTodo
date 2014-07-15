@@ -1,19 +1,15 @@
-var app = app || {};
+var app = window.app || {};
 
-app.init = function(){
-  // models
-  // this.task = new app.Task;
-  // views
-  // this.tasksView = new app.TasksView( {collection: app.tasks} );
-  // this.addTask = new app.AddTask( {collection: app.tasks} );
+(function (app) {
+    'use strict';
+    app.init = function () {
+        this.router = new app.Router();
+        Backbone.history.start({pushState: true});
+    };
 
-  // collections
-  // this.tasks = new app.Tasks();
-  // router 
-  this.router = new app.Router(); 
-  Backbone.history.start({pushState: true});
-}
+    $(document).ready(function () {
+        app.init();
+    });
 
-$(function(){
-  app.init();
-});
+}(app));
+

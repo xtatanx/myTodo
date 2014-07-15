@@ -39,9 +39,9 @@ module.exports = function(grunt) {
 				tasks:['preproccess']
 			},
 
-      jsfile:{
+      jsfiles:{
         files: ['js/*.js'],
-        task: ['jslint']
+        tasks: ['jslint']
       },
 
 			livereload: {
@@ -153,7 +153,13 @@ module.exports = function(grunt) {
 
     jslint:{
       production:{
-        src: 'js/*.js'
+        src: 'js/*.js',
+
+        directives:{
+            browser:true,
+            nomen: true,
+            predef:['jQuery', 'Backbone', 'Firebase', '$', 'FirebaseSimpleLogin', 'console', '_']
+        }        
       }
     }
 

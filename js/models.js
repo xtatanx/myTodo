@@ -1,24 +1,29 @@
-var app = app || {};
+var app = window.app || {};
 
-app.User = Backbone.Model.extend({
-  defaults:{
-    authenticated: false,
-    name: "",
-    pic: ""
-  }
-});
+(function (app) {
+    'use strict';
 
-app.Task = Backbone.Model.extend({
-	defaults:{
-		title: "An empyt task..",
-		done: false,
-		visible: true
-	},
+    app.User = Backbone.Model.extend({
+        defaults: {
+            authenticated: false,
+            name: "",
+            pic: ""
+        }
+    });
 
-	validate: function(attrs){
-		if(! $.trim(attrs.title)){
-			return "The task has no title"
-		}
-	}
-});
+    app.Task = Backbone.Model.extend({
+        defaults: {
+            title: "An empyt task..",
+            done: false,
+            visible: true
+        },
+
+        validate: function (attrs) {
+            if (!$.trim(attrs.title)) {
+                return "The task has no title";
+            }
+        }
+    });
+
+}(app));
 
