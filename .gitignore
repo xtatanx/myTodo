@@ -6,8 +6,6 @@
 *.exe
 *.o
 *.so
-node_modules/
-bower_components/
 
 # Packages #
 ############
@@ -38,3 +36,8 @@ bower_components/
 ehthumbs.db
 Thumbs.db
 src
+
+# User ignores #
+###################
+node_modules/
+production/

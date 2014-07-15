@@ -8,8 +8,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-targethtml');
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.loadNpmTasks('grunt-jslint');
+
 	// PROJECT CONFIGURATION
 	grunt.initConfig({
 		stylus:{
@@ -32,12 +36,9 @@ module.exports = function(grunt) {
 				tasks:['preproccess']
 			},
 
-      buildDev:{
-        files: ['*.html', 'css/*.css', 'js/*.js', 'img/*'],
-        tasks: ['buildDev'],
-        options: {
-          debounceDelay: 5000
-        }     
+      jsfile:{
+        files: ['js/*.js'],
+        task: ['jslint']
       },
 
 			livereload: {
@@ -51,56 +52,18 @@ module.exports = function(grunt) {
 		},
 
     copy:{
-      development:{
-        src: [
-        '**', 
-        '!css/*.styl',
-        '!Gruntfile.js',
-        '!production/**',
-        '!development/**',
-        '!package.json',
-        '!bower.json',
-        '!firebase.json',
-        '!node_modules/**',
-        '!**.md',
-        '!LICENSE',
-        '!bower_components/**',
-        'js/**.js',
-        'css/**.css',
-        '!css/to-doit.min.css',
-        '!js/to-doit.min.js'        
-        ],
-        dest: 'development/'
-      },
-
       production:{
         src: [
-        '**', 
-        '!css/*.styl',
-        '!Gruntfile.js',
-        '!production/**',
-        '!development/**',
-        '!package.json',
-        '!bower.json',
-        '!firebase.json',
-        '!node_modules/**',
-        '!**.md',
-        '!LICENSE',
-        '!bower_components/**',
-        '!js/**.js',
-        '!css/**.css',
-        'css/to-doit.min.css',
-        'js/to-doit.min.js'
+          'css/',
+          'img/',
+          'js/*/*.js',
+          'fonts/*'
         ],
         dest: 'production/'
       }      
     },
 
     clean:{
-      development:[
-        'development/**'
-      ],
-
       production:[
         'production/**'
       ]
@@ -116,7 +79,7 @@ module.exports = function(grunt) {
           'js/router.js',
           'js/app.js'
         ],
-        dest: 'js/to-doit.js'
+        dest: 'production/js/to-doit.min.js'
       },
 
       css:{
@@ -124,14 +87,14 @@ module.exports = function(grunt) {
           'css/normalize.min.css',
           'css/main.css'
         ],
-        dest:'css/to-doit.css'
+        dest:'production/css/to-doit.min.css'
       }
     },
 
     cssmin:{
       minify:{
-        src: 'css/to-doit.css',
-        dest: 'css/to-doit.min.css'
+        src: 'production/css/to-doit.min.css',
+        dest: 'production/css/to-doit.min.css'
       }  
     },
 
@@ -146,22 +109,48 @@ module.exports = function(grunt) {
       },
       my_target:{
         files:{
-          'js/to-doit.min.js': ['js/to-doit.js']
+          'production/js/to-doit.min.js': ['production/js/to-doit.min.js']
         }
       }
     },
 
     targethtml:{
-      development:{
-        files:{
-          'development/index.html': 'index.html'
-        }
-      },
-
       production:{
         files:{
           'production/index.html': 'index.html'  
         }
+      }
+    },
+
+    htmlmin:{
+      production:{
+        options:{
+          removeComments: true,
+          collapseWhitespace: true
+        },
+        files:{
+          'production/index.html': 'production/index.html'
+        }
+      }
+    },
+
+    imagemin:{
+      production: {
+        options:{
+          optimizationLevel: 0
+        },
+        files: [{
+          expand: true,
+          cwd: 'img/',
+          src: ['*.{png,jpg,gif}'],
+          dest: 'production/img/'
+        }]
+      }
+    },
+
+    jslint:{
+      production:{
+        src: 'js/*.js'
       }
     }
 
@@ -170,6 +159,5 @@ module.exports = function(grunt) {
 	// MY TASKS
 	grunt.registerTask('observer','watch');
 	grunt.registerTask('preproccess', ['stylus', 'autoprefixer']);
-  grunt.registerTask('buildDev', ['concat', 'cssmin', 'uglify', 'clean:development', 'copy:development', 'targethtml:development']);
-  grunt.registerTask('buildProd', ['concat', 'cssmin', 'uglify', 'clean:production', 'copy:production', 'targethtml:production']);
+  grunt.registerTask('build', ['clean:production', 'copy:production', 'concat', 'cssmin', 'uglify', 'targethtml:production', 'htmlmin', 'imagemin']);
 };
