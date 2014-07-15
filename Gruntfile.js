@@ -1,3 +1,6 @@
+//  This basic grunt template can matach in every project with some tweaks
+//  Jhonnatan Gonzalez - 2014
+
 module.exports = function(grunt) {
 
 	// PLUGINS LOADED
