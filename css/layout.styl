@@ -48,6 +48,12 @@ body
 .unstyled-link
     color lightColor
     text-decoration none
+    &:hover
+        text-decoration underline
+    &__highlighted
+        color mainRed
+        &:hover
+            color darken(@color, 30%)        
 
 [class^="icon-"], [class*=" icon-"]
     font-family 'myTodo'

@@ -45,7 +45,8 @@ var app = window.app || {};
 
         initialize: function () {
             this.render();
-            this.on('signUp', this.signUp);
+            // this.on('signUp', this.signUp, this);
+            // this.on('logout', this.logout, this);
             this.model.on('change', this.render, this);
         },
 
@@ -59,7 +60,8 @@ var app = window.app || {};
 
         events: {
             'click .signUp': 'signUp',
-            'click #login': 'login'
+            'click #login': 'login',
+            'click #logout': 'logout'
         },
 
         signUp: function (e) {
@@ -67,8 +69,14 @@ var app = window.app || {};
             app.authClient.login('facebook');
         },
 
-        login: function () {
+        login: function (e) {
+            e.preventDefault();
             app.authClient.login('facebook');
+        },
+
+        logout: function (e) {
+            e.preventDefault();
+            app.authClient.logout();
         }
     });
 

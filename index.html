@@ -39,14 +39,15 @@
             <h1 class="logo pushleft"><a href="/">To-doit</a></h1>
             <div class="pushright <% if(authenticated){ %>is-user<% } %>"  >
               <div class="connect">
-                <a href="#" class="unstyled-link button button__red connect_link signUp" data-method="facebook">Sign up</a>
                 <a href="#" class="unstyled-link connect_link" id="login" data-method="facebook">Log in</a>
+                <a href="#" class="unstyled-link button button__red connect_link signUp" data-method="facebook">Sign up</a>
               </div>
               <div class="user-info">
-                <figure class="user-info_pic">
+                <figure class="user-info_pic pushleft">
                   <img alt="user profile pic" src="<%= pic %>" />
                 </figure>
-                <span class="user-info_name"> <%= name %> </span>
+                <span class="user-info_name pushleft"> <%= name %> </span>
+                <a href="#" class="unstyled-link user-info_logout pushleft" id="logout">Log out</a>
               </div>
             </div>            
           </div>
@@ -68,27 +69,21 @@
                   <div class="app-feature">
                     <div class="icon-cloud app-feature_icon"></div>
                     <h3 class="app-feature_title">Data stored in the cloud</h3>
-                    <p class="app-feature_text">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit ex, deserunt culpa reiciendis sequi magni id praesentium atque expedita modi rerum harum quod eligendi, porro ducimus, incidunt similique! Laborum, dolor?
-                    </p>
+                    <p class="app-feature_text">All your to do's are stored in the cloud in a super fast service, if you don't belive us ask the guys of <a class="unstyled-link unstyled-link__highlighted" href="http://firebase.com" target="_blank">Firebase</a> about their service. At to-doit we seek to deliver your tasks as fast as posible to ensure you you have a great expirience.</p>
                   </div>
                 </div>
                 <div class="column-4">
                   <div class="app-feature">
                     <div class="icon-lock app-feature_icon"></div>
                     <h3 class="app-feature_title">Your info is private</h3>
-                    <p class="app-feature_text">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit ex, deserunt culpa reiciendis sequi magni id praesentium atque expedita modi rerum harum quod eligendi, porro ducimus, incidunt similique! Laborum, dolor?
-                    </p>
+                    <p class="app-feature_text">We dont save more than your username and profile picture url. Those are the only neccesary fields we need to ensure you have a great experience using to-doit.</p>
                   </div>
                 </div>
                 <div class="column-4">
                   <div class="app-feature">
                     <div class="icon-share app-feature_icon"></div>
                     <h3 class="app-feature_title">No need to fill a form</h3>
-                    <p class="app-feature_text">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit ex, deserunt culpa reiciendis sequi magni id praesentium atque expedita modi rerum harum quod eligendi, porro ducimus, incidunt similique! Laborum, dolor?
-                    </p>
+                    <p class="app-feature_text">To star using to-doit you don&#39;t need to fill any form, you can register with your actual Facebook account. Get everything donde without missing a single task, then enjoy of your free time.</p>
                   </div>
                 </div>                  
               </div>

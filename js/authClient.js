@@ -25,6 +25,20 @@ var app = window.app || {};
             });
         }
 
+        function logout() {
+            auth.logout();
+            userPic = null;
+            userId = null;
+            userExist = null;
+            userName = null;
+            app.user.set({
+                authenticated: false,
+                name: null,
+                pic: null
+            });
+            app.router.navigate('', {trigger: true});
+        }
+
         function getUserId() {
             return userId;
         }
@@ -71,6 +85,7 @@ var app = window.app || {};
 
         return {
             login: login,
+            logout: logout,
             userId: getUserId
         };
 
