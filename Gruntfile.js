@@ -34,13 +34,17 @@ module.exports = function(grunt){
         },
 
         jslint: {
-            src: ['public/javascripts/*.js'],
-            directives: {
-                browser: true,
-                predef: [
-                    'jQuery'
-                ]
-            }        
+            scripts: {
+                src: ['public/javascripts/main.js'],
+                directives: {
+                    browser: true,
+                    white: true,
+                    devel: true,
+                    predef: [
+                        'jQuery',
+                    ]
+                }  
+            }      
         },
 
         autoprefixer: {
