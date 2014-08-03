@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www --watch views/ --watch routes/ --watch app.js "
   },
   "dependencies": {
     "express": "4.2.0",
