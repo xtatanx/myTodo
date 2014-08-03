@@ -62,6 +62,7 @@ var app = window.app || {};
                 app.addTask = new app.AddTask({collection: app.tasks});
                 app.tasksView = new app.TasksView({collection: app.tasks});
 
+                
                 loginRef.once('value', function (dataSnapshot) {
                     userExist = dataSnapshot.hasChild(user.id);
                     if (userExist) {
