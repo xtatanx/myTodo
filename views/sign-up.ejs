@@ -1,0 +1,41 @@
+<% include partials/head %>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/sign-up">Sign-up</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div>
+        <ul>
+            <li>
+                <a href="">Sign up with fb</a>
+            </li>
+            <li>
+                <a href="">Sign up with twitter</a>
+            </li>
+            <li>
+                <a href="">Sign up with google</a>
+            </li>                        
+        </ul>
+    </div>
+    <form action="/sign-up" method="post">
+        <label for="">
+            Username
+            <input type="text">
+        </label>
+        <label for="">
+            Password
+            <input type="text">
+        </label>
+        <input type="submit" value="sign up">
+    </form>  
+</main>
+
+<footer>
+    copy and etc etc.
+</footer>
+<% include partials/footer %>
