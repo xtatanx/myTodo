@@ -1,34 +1,17 @@
 {
-  "name": "myTodo-app",
+  "name": "myTodo",
   "version": "0.0.1",
-  "description": "personal task manager using local storage ",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/xtatanx/myTodo"
-  },
-  "author": "Jhonnatan Gonzalez Rodriguez",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/xtatanx/myTodo/issues"
-  },
-  "homepage": "https://github.com/xtatanx/myTodo",
-  "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-autoprefixer": "~0.6.5",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-contrib-concat": "^0.4.0",
-    "grunt-contrib-copy": "^0.5.0",
-    "grunt-contrib-cssmin": "^0.10.0",
-    "grunt-contrib-htmlmin": "^0.3.0",
-    "grunt-contrib-imagemin": "^0.7.1",
-    "grunt-contrib-stylus": "~0.11.0",
-    "grunt-contrib-uglify": "^0.5.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-jslint": "^1.1.12",
-    "grunt-targethtml": "^0.2.6"
+  "dependencies": {
+    "express": "~4.2.0",
+    "static-favicon": "~1.0.0",
+    "morgan": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "body-parser": "~1.0.0",
+    "debug": "~0.7.4",
+    "ejs": "~0.8.5"
   }
 }
