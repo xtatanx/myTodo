@@ -6,6 +6,7 @@
     "start": "nodemon ./bin/www --watch views/ --watch routes/ --watch config/ --watch app.js "
   },
   "dependencies": {
+    "bcrypt": "^0.8.0",
     "body-parser": "1.0.0",
     "cookie-parser": "1.0.1",
     "debug": "0.7.4",
@@ -15,6 +16,7 @@
     "morgan": "1.0.0",
     "passport": "0.2.0",
     "passport-facebook": "1.0.3",
+    "passport-local": "^1.0.0",
     "static-favicon": "1.0.0"
   },
   "devDependencies": {

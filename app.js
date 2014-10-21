@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var configDb = require('./config/database.js');
 var mongoose = require('mongoose');
+var passport = require('passport');
 
 var routes = require('./routes/index');
 
@@ -24,7 +25,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(routes);
 
 
